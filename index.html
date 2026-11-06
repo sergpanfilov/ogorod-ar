@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Модуль Овощной сад AR</title>
+<style>
+:root{--bg:#f3f5f0;--surface:#fff;--fg:#1f2a1e;--muted:#5d6a5a;--accent:#3f7a35;--accent-fg:#fff;--line:#d9e0d3}
+@media (prefers-color-scheme: dark){:root{--bg:#141a13;--surface:#1d251c;--fg:#e7eee3;--muted:#9fb09a;--accent:#7cbf6c;--accent-fg:#0f170e;--line:#2f3a2d;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 32px;display:grid;gap:16px}
+h1{font-size:1.5rem;line-height:1.2;margin:0}
+.meta,.note{color:var(--muted);margin:0}
+model-viewer{width:100%;height:min(62vh,480px);background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.ar-btn{position:absolute;left:12px;right:12px;bottom:12px;border:0;border-radius:10px;background:var(--accent);color:var(--accent-fg);font:700 1.05rem system-ui,sans-serif;padding:16px 20px;cursor:pointer}
+ol{margin:0;padding-left:1.3em;display:grid;gap:6px}
+#status{min-height:1.5em;margin:0;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Модуль Овощной сад</h1>
+  <p class="meta">Размер модуля: 11,6 × 10,5 м, высота до 3,5 м</p>
+
+  <model-viewer id="mv" src="modul-ogorod.glb" alt="3D-модель модуля Овощной сад"
+    ar ar-modes="scene-viewer webxr quick-look" ar-scale="fixed" ar-placement="floor"
+    camera-controls touch-action="pan-y" camera-orbit="0deg 55deg auto" shadow-intensity="1">
+    <button slot="ar-button" class="ar-btn">Посмотреть в своем саду</button>
+  </model-viewer>
+
+  <p id="status" aria-live="polite">Загрузка модели...</p>
+
+  <ol>
+    <li>Выйдите на участок и нажмите зеленую кнопку на модели.</li>
+    <li>Медленно поводите телефоном над землей, пока не появится модуль.</li>
+    <li>Модуль стоит в натуральную величину. Его можно передвинуть пальцем и повернуть двумя пальцами.</li>
+  </ol>
+  <p class="note">Вращать модель на экране можно одним пальцем, приближать - двумя.</p>
+</div>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<script>
+const mv=document.getElementById('mv'), st=document.getElementById('status');
+mv.addEventListener('load',()=>{st.textContent=mv.canActivateAR?'Модель загружена. Можно смотреть на участке.':'Модель загружена. Кнопка AR работает только на телефоне с поддержкой AR.'});
+mv.addEventListener('error',()=>{st.textContent='Модель не загрузилась. Обновите страницу.'});
+mv.addEventListener('ar-status',e=>{if(e.detail.status==='failed')st.textContent='AR не запустился. Проверьте, что установлено приложение Google Play Services for AR.'});
+</script>
+</body>
+</html>
