@@ -19,25 +19,21 @@ ol{margin:0;padding-left:1.3em;display:grid;gap:6px}
 </head>
 <body>
 <div class="wrap">
-  <h1>Модуль Овощной сад</h1>
-  <p class="meta">Размер модуля: 11,6 × 10,5 м, высота до 3,5 м</p>
-
-  <model-viewer id="mv" src="modul-ogorod.glb" alt="3D-модель модуля Овощной сад"
-    ar ar-modes="scene-viewer webxr quick-look" ar-scale="fixed" ar-placement="floor"
-    camera-controls touch-action="pan-y" camera-orbit="0deg 55deg auto" shadow-intensity="1">
-    <button slot="ar-button" class="ar-btn">Посмотреть в своем саду</button>
-  </model-viewer>
-
-  <p id="status" aria-live="polite">Загрузка модели...</p>
-
-  <ol>
-    <li>Выйдите на участок и нажмите зеленую кнопку на модели.</li>
-    <li>Медленно поводите телефоном над землей, пока не появится модуль.</li>
-    <li>Модуль стоит в натуральную величину. Его можно передвинуть пальцем и повернуть двумя пальцами.</li>
-  </ol>
-  <p class="note">Вращать модель на экране можно одним пальцем, приближать - двумя.</p>
+<h1>Модуль Овощной сад</h1>
+<p class="meta">Размер модуля: 11,6 × 10,5 м, высота до 3,5 м</p>
+<model-viewer id="mv" src="modul-ogorod.glb" alt="3D-модель модуля Овощной сад"
+  ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor"
+  camera-controls touch-action="pan-y" camera-orbit="0deg 55deg auto" shadow-intensity="1">
+  <button slot="ar-button" class="ar-btn">Посмотреть в своем саду</button>
+</model-viewer>
+<p id="status" aria-live="polite">Загрузка модели...</p>
+<ol>
+<li>Выйдите на участок и нажмите зеленую кнопку на модели.</li>
+<li>Медленно поводите телефоном над землей, пока не появится модуль.</li>
+<li>Модуль стоит в натуральную величину. Его можно передвинуть пальцем и повернуть двумя пальцами.</li>
+</ol>
+<p class="note">Вращать модель на экране можно одним пальцем, приближать - двумя.</p>
 </div>
-
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
 <script>
 const mv=document.getElementById('mv'), st=document.getElementById('status');
